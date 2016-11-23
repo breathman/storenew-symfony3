@@ -1,0 +1,26 @@
+{
+  "name": "storenew",
+  "version": "1.0.0",
+  "description": "storenew ========",
+  "main": "app.php",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/breathman/storenew-symfony3.git"
+  },
+  "author": "breathman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/breathman/storenew-symfony3/issues"
+  },
+  "homepage": "https://github.com/breathman/storenew-symfony3#readme",
+  "dependencies": {
+    "bootflat": "^2.0.4",
+    "bootstrap": "^3.3.7"
+  }
+}
