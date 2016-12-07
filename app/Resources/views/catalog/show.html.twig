@@ -10,7 +10,7 @@
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>First Name</th>
+                    <th>Категория</th>
                     <th>Last Name</th>
                     <th>Username</th>
                 </tr>
@@ -18,7 +18,9 @@
                 <tbody>
                 <tr>
                     <td>1</td>
-                    <td>Mark</td>
+                    <td>
+                        <a href="{{ path('catalog_get_products', {'category': category}) }}">{{ category }}</a>
+                    </td>
                     <td>Otto</td>
                     <td>@mdo</td>
                 </tr>

@@ -6,38 +6,29 @@
         <p class="pull-right visible-xs">
             <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
         </p>
-        <div class="row">
-            <div class="col-6 col-sm-6 col-lg-4">
-                <h2>Heading</h2>
-                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
-            </div><!--/span-->
-            <div class="col-6 col-sm-6 col-lg-4">
-                <h2>Heading</h2>
-                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
-            </div><!--/span-->
-            <div class="col-6 col-sm-6 col-lg-4">
-                <h2>Heading</h2>
-                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
-            </div><!--/span-->
-            <div class="col-6 col-sm-6 col-lg-4">
-                <h2>Heading</h2>
-                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
-            </div><!--/span-->
-            <div class="col-6 col-sm-6 col-lg-4">
-                <h2>Heading</h2>
-                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
-            </div><!--/span-->
-            <div class="col-6 col-sm-6 col-lg-4">
-                <h2>Heading</h2>
-                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
-            </div><!--/span-->
+        <div class="row" id="react-row">
         </div><!--/row-->
     </div><!--/span-->
+
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+
+    <script src="{{ asset('node_modules/react/dist/react.js') }}"></script>
+    <script src="{{ asset('node_modules/react-dom/dist/react-dom.js') }}"></script>
+    <script src="{{ asset('node_modules/babel-core/browser.min.js') }}"></script>
+
+    <script type="text/babel" src="{{ asset('js/products.react.js') }}"></script>
+
+    <script type="text/babel">
+        var productsUrl = '{{ path('catalog_get_products', {'category': category}) }}';
+
+        ReactDOM.render(
+            <ProductSection url={productsUrl}/>,
+            document.getElementById('react-row')
+        );
+    </script>
 
 {% endblock %}

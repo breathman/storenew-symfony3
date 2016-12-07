@@ -20,7 +20,10 @@
   },
   "homepage": "https://github.com/breathman/storenew-symfony3#readme",
   "dependencies": {
+    "babel-core": "^5.8.23",
     "bootflat": "^2.0.4",
-    "bootstrap": "^3.3.7"
+    "bootstrap": "^3.3.7",
+    "react": "^0.14.3",
+    "react-dom": "^0.14.3"
   }
 }
