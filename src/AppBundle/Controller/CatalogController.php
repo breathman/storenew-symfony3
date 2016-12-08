@@ -18,7 +18,7 @@ use Symfony\Component\HttpFoundation\Response;
 class CatalogController extends Controller
 {
     /**
-     * @Route("/{category}")
+     * @Route("/catalog/{category}")
      * @return Response
      */
     public function indexAction($category) {
@@ -28,7 +28,7 @@ class CatalogController extends Controller
     }
 
     /**
-     * @Route("/catalog/{categoryName}")
+     * @Route("/catalog/show/{categoryName}")
      * @var String
      * @return Response
      */
@@ -41,7 +41,21 @@ class CatalogController extends Controller
     }
 
     /**
-     * @Route("/product")
+     * @Route("/about")
+     * @return Response
+     */
+    public function aboutAction() {
+
+        $md = file_get_contents($this->getParameter('about_file'));
+
+        return $this->render(':catalog:readme.html.twig', array(
+            'text' => $md,
+        ));
+
+    }
+
+    /**
+     * @Route("/product/iphone-6s")
      * @return Response
      */
     public function showProductAction() {

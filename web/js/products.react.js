@@ -62,7 +62,7 @@ var ProductBox = React.createClass({
                 <div>
                     <img className="image-min" src={this.props.uri} alt=""/>
                     <h4 className="product-price">{this.props.price} руб.</h4>
-                    <p><a className="btn btn-default" href="/product" role="button">Купить »</a></p>
+                    <p><a className="btn btn-default" href="/product/iphone-6s" role="button">Купить »</a></p>
                 </div>
             </div>
         );
