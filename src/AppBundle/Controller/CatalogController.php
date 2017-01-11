@@ -46,7 +46,19 @@ class CatalogController extends Controller
      */
     public function aboutAction() {
 
-        $md = file_get_contents($this->getParameter('about_file'));
+        $text = file_get_contents($this->getParameter('about_file'));
+
+        $cacheKey = md5($text);
+        $cache = $this->get('doctrine_cache.providers.markdown_cache');
+
+        if ($cache->contains($cacheKey)) {
+            $md = $cache->fetch($cacheKey);
+        } else {
+            sleep(5);
+            $md = $this->get('markdown.parser')->transform($text);
+            $cache->save($cacheKey, $md);
+        }
+
 
         return $this->render(':catalog:readme.html.twig', array(
             'text' => $md,
