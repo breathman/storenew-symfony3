@@ -17,6 +17,22 @@ use Symfony\Component\HttpFoundation\Response;
 
 class CatalogController extends Controller
 {
+
+    /**
+     * @Route("/catalog/list")
+     * @Method("GET")
+     * @return Response
+     */
+    public function listAction() {
+        $em = $this->getDoctrine()->getManager();
+
+        $products = $em->getRepository('AppBundle:Product')->findAll();
+
+        return $this->render('list.html.twig', array(
+            'products' => $products,
+        ));
+    }
+
     /**
      * @Route("/catalog/{category}")
      * @return Response
@@ -34,7 +50,7 @@ class CatalogController extends Controller
      */
     public function showAction($categoryName) {
 
-        return $this->render(':catalog:show.html.twig', array(
+        return $this->render('list.html.twig', array(
             'category' => $categoryName
         ));
 
@@ -72,7 +88,7 @@ class CatalogController extends Controller
      */
     public function showProductAction() {
 
-        return $this->render(':catalog:product.html.twig', array(
+        return $this->render('show.html.twig', array(
         ));
 
     }

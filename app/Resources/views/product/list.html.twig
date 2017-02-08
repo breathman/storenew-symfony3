@@ -1,0 +1,33 @@
+{% extends('base.html.twig') %}
+
+{% block content %}
+
+    <div class="col-xs-12 col-sm-9">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">Каталог</div>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Модель</th>
+                    <th>Производитель</th>
+                    <th>Категория</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for product in products %}
+                    <tr>
+                        <td>{{ product.id}}</td>
+                        <td><a href="{{ path('product_show', {'productTitle': product.title}) }}"> {{ product.title }} </a></td>
+                        <td>{{ product.producer }}</td>
+                        <td>{{ product.category }}</td>
+                    </tr>
+                {% endfor %}
+
+            </table>
+        </div>
+
+    </div>
+
+{% endblock %}

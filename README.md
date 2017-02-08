@@ -20,8 +20,14 @@
 |Templater               |   twig|
 |knp-markdown-bundle               |   парсер markdown-to-html для быстрой генерации текстовых блоков со статичной информацией|
 |doctrine-cache-bundle | для кэширования |
+|doctrine-migrations-bundle | миграции |
+|doctrine-fixtures-bundle | фикстуры |
+|nelmio/alice|для заполнения фейковыми данными|
 
 |Front-end                |                                                      |
 | :------------------------------------- | --------------------------------------------------: |
 |Core     | **react-0.14.3** |
 |CSS-framework | bootflat-2.0.4  |
+
+sotf/doctrine-extensions-bundle
+использовал timestamble и blameable для мониторинга даты обновления создания сущностей и юзера

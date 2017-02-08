@@ -1,0 +1,7 @@
+AppBundle\Entity\Product:
+  product_{1..10}:
+    manufacturer: '@manufacturer*'
+    model: <model()>
+    title: '<($manufacturer->getName())> <($model)>'
+    description: <ru_RU:text(100)>
+    category: 'Телефоны'

@@ -1,0 +1,4 @@
+AppBundle\Entity\Manufacturer:
+  manufacturer_{1..5}:
+    name: <company()>
+    description: <text(100)>

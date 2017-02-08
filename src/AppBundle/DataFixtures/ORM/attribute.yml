@@ -1,0 +1,5 @@
+AppBundle\Entity\Attribute:
+  attribute_{1..12}:
+    attribute_group: '@attribute_group*'
+    value (unique): <attribute_value($attribute_group->getName())>
+    metric: <attribute_metric($attribute_group->getName())>

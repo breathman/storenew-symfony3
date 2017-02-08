@@ -4,6 +4,40 @@ parameters:
 #    parameter_name: value
 
 services:
-#    service_name:
-#        class: AppBundle\Directory\ClassName
-#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+  admin.manufacturer:
+    class: AppBundle\Admin\ManufacturerAdmin
+    arguments: [~, AppBundle\Entity\Manufacturer, ~]
+    tags:
+      - { name: sonata.admin, manager_type: orm, group: Каталог, label: Производители }
+  admin.product:
+    class: AppBundle\Admin\ProductAdmin
+    arguments: [~, AppBundle\Entity\Product, ~]
+    tags:
+      - { name: sonata.admin, manager_type: orm, group: Каталог, label: Товары }
+    calls:
+      - [ addChild, ["@admin.product_attribute"] ]
+  admin.attribute_group:
+    class: AppBundle\Admin\AttributeGroupAdmin
+    arguments: [~, AppBundle\Entity\AttributeGroup, ~]
+    tags:
+      - { name: sonata.admin, manager_type: orm, group: Каталог, label: Группы атрибутов }
+  admin.attribute:
+    class: AppBundle\Admin\AttributeAdmin
+    arguments: [~, AppBundle\Entity\Attribute, ~]
+    tags:
+      - { name: sonata.admin, manager_type: orm, group: Каталог, label: Атрибуты }
+  admin.product_attribute:
+    class: AppBundle\Admin\ProductAttributeAdmin
+    arguments: [~, AppBundle\Entity\ProductAttribute, ~]
+    tags:
+      - { name: sonata.admin, manager_type: orm, group: Каталог, label: Атрибуты товаров }
+  admin.variant:
+    class: AppBundle\Admin\VariantAdmin
+    arguments: [~, AppBundle\Entity\Variant, ~]
+    tags:
+      - { name: sonata.admin, manager_type: orm, group: Каталог, label: Вариации }
+  admin.variant_attribute:
+    class: AppBundle\Admin\VariantAttributeAdmin
+    arguments: [~, AppBundle\Entity\VariantAttribute, ~]
+    tags:
+      - { name: sonata.admin, manager_type: orm, group: Каталог, label: Атрибуты вариаций }

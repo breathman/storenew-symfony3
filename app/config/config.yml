@@ -6,12 +6,12 @@ imports:
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    locale: en
+    locale: ru
     cache_type: file_system
 
 framework:
     #esi:             ~
-    #translator:      { fallbacks: ["%locale%"] }
+    translator:      { fallbacks: ["%locale%"] }
     secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -50,6 +50,8 @@ doctrine:
         user:     "%database_user%"
         password: "%database_password%"
         charset:  UTF8
+        types:
+            json: Sonata\Doctrine\Types\JsonType
         # if using pdo_sqlite as your database driver:
         #   1. add the path in parameters.yml
         #     e.g. database_path: "%kernel.root_dir%/data/data.db3"
@@ -68,3 +70,113 @@ doctrine_cache:
             type: %cache_type%
             file_system:
                 directory: %kernel.cache_dir%/markdown_cache
+
+stof_doctrine_extensions:
+    default_locale:  "%locale%"
+    orm:
+        default:
+            timestampable: true
+            blameable: true
+
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: Application\Sonata\UserBundle\Entity\User
+
+    group:
+        group_class: Application\Sonata\UserBundle\Entity\Group
+
+    service:
+        user_manager: sonata.user.orm.user_manager
+        mailer: fos_user.mailer.noop
+
+sonata_user:
+    security_acl: false
+    manager_type: orm
+    class:
+         user: Application\Sonata\UserBundle\Entity\User
+         group: Application\Sonata\UserBundle\Entity\Group
+
+sonata_block:
+    default_contexts: [sonata_page_bundle]
+    blocks:
+        sonata.admin.block.admin_list:
+            contexts: [admin]
+        sonata.block.service.text:
+        sonata.admin.block.stats:
+        sonata.admin.block.search_result:
+            contexts: [admin]
+        sonata.user.block.menu:
+
+
+sonata_admin:
+    title: Tinkoff Store
+    title_logo: "/images/logo.png"
+    security:
+        handler: sonata.admin.security.handler.role
+    dashboard:
+        blocks:
+            -
+                position: top
+                type: sonata.block.service.text
+                settings:
+                    content: >
+                        <h3>Админ панель <big>Tinkoff Store</big></h3>
+            -
+                class: col-xs-6
+                position: left
+                type: sonata.admin.block.stats
+                settings:
+                    code: admin.product
+                    icon: fa-mobile
+                    text: Товаров
+                    color: bg-green
+            -
+                class: col-xs-6
+                position: center
+                type: sonata.admin.block.stats
+                settings:
+                    code: admin.variant
+                    icon: fa-barcode
+                    text: Моделей
+                    color: bg-yellow
+            -
+                class: col-xs-6
+                position: right
+                type: sonata.admin.block.stats
+                settings:
+                    code: admin.manufacturer
+                    icon: fa-building
+                    text: Производителей
+                    color: bg-red
+            -
+                position: left
+                type: sonata.admin.block.admin_list
+                settings:
+                    groups: [admin.group.catalog]
+            -
+                position: center
+                type: sonata.admin.block.admin_list
+                settings:
+                    groups: [admin.group.book]
+        groups:
+            admin.group.catalog:
+                label: Каталог
+                label_catalogue: AppBundle
+                items:
+                    - admin.product
+                    - admin.variant
+            admin.group.book:
+                label: Справочники
+                label_catalogue: AppBundle
+                items:
+                    - admin.manufacturer
+                    - admin.attribute
+                    - admin.attribute_group
+            admin.group.relations:
+                label: Вспомогательные сущности
+                label_catalogue: AppBundle
+                items:
+                    # скрываем ассоциативные сущности т.к. их не нужно редактировать напрямую
+                    #- admin.product_attribute
+                    #- admin.variant_attribute

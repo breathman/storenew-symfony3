@@ -1,0 +1,6 @@
+AppBundle\Entity\Offer:
+  offer_{1..10}:
+    variant: '@variant*'
+    vendor: '@vendor*'
+    price: <numberBetween(16000, 30000)>
+    discount: <numberBetween(0, 5000)>

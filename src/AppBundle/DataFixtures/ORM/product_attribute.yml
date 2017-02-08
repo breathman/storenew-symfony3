@@ -1,0 +1,4 @@
+AppBundle\Entity\ProductAttribute:
+  product_attribute_{1..5}:
+    product: '@product*'
+    attribute: '@attribute*'
